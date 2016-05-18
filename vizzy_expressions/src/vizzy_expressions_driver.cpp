@@ -14,17 +14,17 @@ class DriverComms{
 private:
 io_service io;
 boost::system::error_code ec;
-serial_port *sp;
+
 
 
 public:
+serial_port *sp;
+
 DriverComms(std::string port, int baudrate){
 
     sp = new serial_port(io);
-
     //connect to port
     sp->open(port, ec);
-
     if(ec)
     {
         //Failure to connect
@@ -58,16 +58,22 @@ ExpressionDriver() : nPriv("~"){
 
     nPriv.param<std::string>("port", port, "/dev/ttyACM0");
     nPriv.param<int>("baudrate", baudrate, 115200);
+    
 
+    driverComms = new DriverComms(port, baudrate);
 
+    ROS_ERROR("Comm opened!");
 
+    int nbytes = write(*(driverComms->sp), boost::asio::buffer("R01"));
+
+    ROS_ERROR_STREAM("wrote: " << nbytes);
 
 
 }
 
 ~ExpressionDriver()
 {
-
+    delete driverComms;
 }
 
 };
@@ -77,7 +83,7 @@ int main(int argc, char** argv)
 {
     ros::init(argc, argv, "ExpressionDriver");
 
-    ExpressionDriver expressionDriver();
+    ExpressionDriver expressionDriver;
 
     ros::spin();
 
