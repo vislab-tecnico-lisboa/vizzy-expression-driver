@@ -1,0 +1,58 @@
+#goal definition
+
+uint8 PREDEFINED=0
+uint8 LOWLEVEL=1
+
+uint8 mode
+
+#For the PREDEFINED mode
+string emotion
+string FACE_HAPPY = "hap"
+string FACE_SAD = "sad"
+string FACE_ANGRY = "ang"
+string FACE_SHY = "shy"
+string FACE_EVIL = "evi"
+string FACE_CUNNING = "cun"
+string FACE_SURPRISED = "sur"
+
+string subsystem
+string PART_MOUTH = "mou"
+string PART_EYELIDS = "eli"
+string PART_RIGHTEYEBROW = "reb"
+string PART_LEFTEYEBROW = "leb"
+string PART_ALL = "all"
+
+#For the LOWLEVEL mode
+
+uint8 mouth_value
+uint8 eyelids_value
+uint8 rightEyebrow_value
+uint8 leftEyebrow_value
+
+---
+#result definition
+bool state_reached
+
+string mouth_emotion
+string eyelids_emotion
+string rightEyebrow_emotion
+string leftEyebrow_emotion
+
+uint8 mouth_value
+uint8 eyelids_value
+uint8 rightEyebrow_value
+uint8 leftEyebrow_value
+
+---
+#feedback
+bool state_reached
+
+string mouth_emotion
+string eyelids_emotion
+string rightEyebrow_emotion
+string leftEyebrow_emotion
+
+uint8 mouth_value
+uint8 eyelids_value
+uint8 rightEyebrow_value
+uint8 leftEyebrow_value
