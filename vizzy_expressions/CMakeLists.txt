@@ -9,6 +9,7 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   actionlib_msgs
+  actionlib
 )
 
 
@@ -102,7 +103,7 @@ generate_messages(
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
+   INCLUDE_DIRS include
 #  LIBRARIES vizzy_expressions
    CATKIN_DEPENDS roscpp rospy std_msgs actionlib_msgs
 #  DEPENDS system_lib
@@ -114,7 +115,7 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-# include_directories(include)
+include_directories(include)
 include_directories(
   ${catkin_INCLUDE_DIRS}
 )
@@ -131,7 +132,7 @@ include_directories(
 # add_dependencies(vizzy_expressions ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-add_executable(vizzy_expressions_driver src/vizzy_expressions_driver.cpp)
+add_executable(vizzy_expressions_driver src/vizzy_expressions_driver.cpp src/expression_vals.cpp include/expression_vals.hpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
