@@ -65,18 +65,18 @@ public:
         std::stringstream msg;
 
         if(vizzy_expressions::ExpressionActionGoal::_goal_type::PART_RIGHTEYEBROW == part)
-            msg << "R" << std::hex << std::uppercase << value;
+            msg << "R" << std::hex << std::uppercase << std::setfill('0')<< std::setw(2) << +value;
         else if(vizzy_expressions::ExpressionActionGoal::_goal_type::PART_LEFTEYEBROW == part)
-            msg << "L" << std::hex << std::uppercase << value;
+            msg << "L" << std::hex << std::uppercase << std::setfill('0')<< std::setw(2) << +value;
         else if(vizzy_expressions::ExpressionActionGoal::_goal_type::PART_MOUTH == part)
-            msg << "M" << std::hex << std::uppercase << value;
+            msg << "M" << std::hex << std::uppercase << std::setfill('0')<< std::setw(2) << +value;
         else if(vizzy_expressions::ExpressionActionGoal::_goal_type::PART_EYELIDS == part)
-            msg << "S" << std::hex << std::uppercase << value;
+            msg << "S" << std::hex << std::uppercase << std::setfill('0')<< std::setw(2) << +value;
         else{
             ROS_ERROR("Invalid command!");
             return false;}
 
-
+        ROS_ERROR_STREAM(" "  << msg.str());
         return simpleSend(msg.str());
 
     }
@@ -92,7 +92,7 @@ public:
 
 class ExpressionDriver{
 
-private:
+protected:
     ros::NodeHandle nh_;
     ros::NodeHandle nPriv;
     DriverComms *driverComms;
@@ -108,7 +108,9 @@ private:
 
 
 public:
-    ExpressionDriver(std::string name) : nPriv("~"), as_(nh_, name, boost::bind(&ExpressionDriver::executeCB, this, _1), false),
+
+
+    ExpressionDriver(std::string name, ros::NodeHandle &n) :  nh_(n), nPriv("~"), as_(nh_, name, boost::bind(&ExpressionDriver::executeCB, this, _1), false),
         action_name_()
     {
 
@@ -126,7 +128,9 @@ public:
         }
 
         //Start the action server
+
         as_.start();
+
 
         //Initialize and set the default expression
         bool sentM, sentS, sentR, sentL;
@@ -150,6 +154,7 @@ public:
         if(sentM && sentS && sentR && sentL)
         {
             ROS_INFO("Initialization commands sent. Vizzy is Happy! :D");
+
         }
         else
         {
@@ -220,7 +225,7 @@ public:
 
 
 
-                }
+                }else
                 {
                     ROS_ERROR("Invalid expression...");
                     success = false;
@@ -363,16 +368,13 @@ int main(int argc, char** argv)
 {
     ros::init(argc, argv, "ExpressionDriver");
 
-    vizzy_expressions::ExpressionGoal goal;
+    ros::NodeHandle n;
 
-    goal.mouth_value = 0x1A;
-
-    // +a <- converts "a" automatically from char to int
-    ROS_ERROR_STREAM("String: " << std::hex << std::uppercase << +goal.mouth_value);
+    ExpressionDriver *expressionDriver;
 
     try
     {
-        ExpressionDriver expressionDriver(ros::this_node::getName());
+        expressionDriver = new ExpressionDriver(ros::this_node::getName(), n);
     }
     catch(const std::exception&)
     {
@@ -380,7 +382,9 @@ int main(int argc, char** argv)
         return EXIT_FAILURE;
     }
 
+    ROS_INFO("Spining!");
     ros::spin();
-
+    delete expressionDriver;
+    ROS_INFO("Exiting!");
     return 0;
 }
