@@ -32,6 +32,9 @@ uint8 leftEyebrow_value
 
 ---
 #result definition
+
+string FACE_UNDEFINED = "und"
+
 bool state_reached
 
 string mouth_emotion
@@ -47,6 +50,8 @@ uint8 leftEyebrow_value
 ---
 #feedback
 bool state_reached
+
+string FACE_UNDEFINED = "und"
 
 string mouth_emotion
 string eyelids_emotion

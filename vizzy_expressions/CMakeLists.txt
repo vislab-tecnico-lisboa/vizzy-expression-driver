@@ -113,6 +113,9 @@ catkin_package(
 ## Build ##
 ###########
 
+SET(CMAKE_CXX_FLAGS_RELEASE "-Wall -O3 -g")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS_RELEASE}") #Default build mode is release mode
+
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(include)

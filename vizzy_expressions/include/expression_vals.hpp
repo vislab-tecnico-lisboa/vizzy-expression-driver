@@ -2,6 +2,7 @@
 #define EXPRESSION_VALS_HPP
 
 #include <string>
+#include <boost/asio.hpp>
 
 
 namespace ExpressionValues
@@ -10,75 +11,77 @@ namespace ExpressionValues
 class ExpressionNeutral{
 
 public:
-    static const std::string LEFT_EYEBROW;
-    static const std::string RIGHT_EYEBROW;
-    static const std::string MOUTH;
-    static const std::string EYELIDS;
+    static const uint8_t LEFT_EYEBROW;
+    static const uint8_t RIGHT_EYEBROW;
+    static const uint8_t MOUTH;
+    static const uint8_t EYELIDS;
 };
 
 
 class ExpressionHappy{
 
 public:
-    static const std::string LEFT_EYEBROW;
-    static const std::string RIGHT_EYEBROW;
-    static const std::string MOUTH;
-    static const std::string EYELIDS;
+    static const uint8_t LEFT_EYEBROW;
+    static const uint8_t RIGHT_EYEBROW;
+    static const uint8_t MOUTH;
+    static const uint8_t EYELIDS;
 };
 
 class ExpressionSad{
 
 public:
-    static const std::string LEFT_EYEBROW;
-    static const std::string RIGHT_EYEBROW;
-    static const std::string MOUTH;
-    static const std::string EYELIDS;
+    static const uint8_t LEFT_EYEBROW;
+    static const uint8_t RIGHT_EYEBROW;
+    static const uint8_t MOUTH;
+    static const uint8_t EYELIDS;
 };
 
 class ExpressionSurprised{
 
 public:
-    static const std::string LEFT_EYEBROW;
-    static const std::string RIGHT_EYEBROW;
-    static const std::string MOUTH;
-    static const std::string EYELIDS;
+    static const uint8_t LEFT_EYEBROW;
+    static const uint8_t RIGHT_EYEBROW;
+    static const uint8_t MOUTH;
+    static const uint8_t EYELIDS;
 };
 
 class ExpressionAngry{
 
 public:
-    static const std::string LEFT_EYEBROW;
-    static const std::string RIGHT_EYEBROW;
-    static const std::string MOUTH;
-    static const std::string EYELIDS;
+    static const uint8_t LEFT_EYEBROW;
+    static const uint8_t RIGHT_EYEBROW;
+    static const uint8_t MOUTH;
+    static const uint8_t EYELIDS;
 };
 
 class ExpressionEvil{
 
 public:
-    static const std::string LEFT_EYEBROW;
-    static const std::string RIGHT_EYEBROW;
-    static const std::string MOUTH;
-    static const std::string EYELIDS;
+    static const uint8_t LEFT_EYEBROW;
+    static const uint8_t RIGHT_EYEBROW;
+    static const uint8_t MOUTH;
+    static const uint8_t EYELIDS;
 };
 
 class ExpressionShy{
 
 public:
-    static const std::string LEFT_EYEBROW;
-    static const std::string RIGHT_EYEBROW;
-    static const std::string MOUTH;
-    static const std::string EYELIDS;
+    static const uint8_t LEFT_EYEBROW;
+    static const uint8_t RIGHT_EYEBROW;
+    static const uint8_t MOUTH;
+    static const uint8_t EYELIDS;
 };
 
 class ExpressionCunning{
 
 public:
-    static const std::string LEFT_EYEBROW;
-    static const std::string RIGHT_EYEBROW;
-    static const std::string MOUTH;
-    static const std::string EYELIDS;
+    static const uint8_t LEFT_EYEBROW;
+    static const uint8_t RIGHT_EYEBROW;
+    static const uint8_t MOUTH;
+    static const uint8_t EYELIDS;
 };
+
+uint8_t ExpressionValue(std::string emotion, std::string part);
 
 }
 
