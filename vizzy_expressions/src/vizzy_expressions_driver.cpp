@@ -305,10 +305,10 @@ public:
             std::stringstream l;
 
 
-            m << std::hex << goal->mouth_value;
-            s << std::hex << goal->eyelids_value;
-            r << std::hex << goal->rightEyebrow_value;
-            l << std::hex << goal->leftEyebrow_value;
+            m << std::hex << std::uppercase << +goal->mouth_value;
+            s << std::hex << std::uppercase << +goal->eyelids_value;
+            r << std::hex << std::uppercase << +goal->rightEyebrow_value;
+            l << std::hex << std::uppercase << +goal->leftEyebrow_value;
 
             ROS_INFO("Changing to non predefined emotion. Mouth: %s, Eyelids: %s, RightEyebrow: %s, LeftEyebrow: %s", m.str().c_str(), s.str().c_str(), r.str().c_str(), l.str().c_str());
             bool sentM(false), sentS(false), sentR(false), sentL(false);
